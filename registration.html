@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="style.css"/> <!--Connects the sheet to CSS-->
+    
+    <link rel="icon" type="image/x-icon" href="Images/Lily Logo.png">
+
+    <title>Lily of the Valley Spa</title>
+</head>
+<body>
+    <header> 
+        <nav>
+            
+           <a href="index.html"> <div class="logo">
+                <img src="Images/Lily of the Valley Spa Logo.png" alt="Entire Logo" class="logo-image">
+            </div></a>
+           
+                <ul class="header-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="index.html">Login</a></li>
+                    <li><a href="registration.html">Registration</a></li>
+                    <li><a href="Products.html">Products</a></li>
+                    <li><a href="Cart.html">Cart<span id="cartCounter" class="cart-count">0</span></a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="invoice.html">Invoice</a></li>
+                    <li><a href="dashboard.html">User Frequency & Invoice List</a></li>
+                </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+
+        <div class="form-container">
+
+                <h2 class="form-title">Create Your Account</h2> <!--Heading-->
+
+                <form id="validateRegistrationForm" novalidate> <!--Registration Form-->
+
+                    <!--First Name -->
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                        <div class="error-message" id="firstNameError"></div>
+                    </div>
+                    
+                    <!--Last Name -->
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                        <div class="error-message" id="lastNameError"></div>
+                    </div>
+
+                    <!--Date of Birth -->
+                    <div class="form-group">
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" name="dob" required>
+                        <div class="error-message" id="dobError"></div>
+                    </div>
+                    
+                    <!--Email -->
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+                    
+                    <!--Username -->
+                    <div class="form-group">
+                        <label for="regUsername">Username:</label>
+                        <input type="text" id="regUsername" name="username" required>
+                        <div class="error-message" id="regUsernameError"></div>
+                    </div>
+                    
+                    <!--Password -->
+                    <div class="form-group">
+                        <label for="regPassword">Password:</label>
+                        <input type="password" id="regPassword" name="password" required>
+                        <div class="error-message" id="regPasswordError"></div>
+                    </div>
+                    
+                    <!--Confirm Password -->
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        <div class="error-message" id="confirmPasswordError"></div>
+                    </div>
+                    
+                    <!--Submit Button-->
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Register</button>
+
+                </form>
+                
+                <!--Link to Login Page-->
+                <p style="text-align: center; margin-top: 1.5rem;">
+                    Already have an account? <a href="login.html" style="color: var(--primary-color); cursor: pointer;">Login here</a>
+                </p>
+            </div>
+    </main>
+        <script src="script.js"></script> <!--Connects to Javascript-->
+    </body>
+
+    <footer>
+    
+    <p>&copy; 2025 Lily of the Valley Spa from Levy's Corp </p>
+       <strong> <a href="#Top"> Back to the Top &nbsp; </a> </strong>
+   
+    </footer>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="Images/Lily Logo.png" />
+    <title>Dashboard - Lily of the Valley Spa</title>
+</head>
+<body>
+     <header> 
+        <nav>
+            
+           <a href="index.html"> <div class="logo">
+                <img src="Images/Lily of the Valley Spa Logo.png" alt="Entire Logo" class="logo-image">
+            </div></a>
+           
+                <ul class="header-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="index.html">Login</a></li>
+                    <li><a href="registration.html">Registration</a></li>
+                    <li><a href="Products.html">Products</a></li>
+                    <li><a href="Cart.html">Cart<span id="cartCounter" class="cart-count">0</span></a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="invoice.html">Invoice</a></li>
+                    <li><a href="dashboard.html">User Frequency & Invoice List</a></li>
+                </ul>
+        </nav>
+    </header>
+
+    <main class="main-content" style="padding: 2rem;">
+        <h1 class="section-title">Admin Dashboard</h1>
+
+        <!-- User Frequency Charts -->
+        <div class="chart">
+            <h2>User Frequency by Gender</h2>
+            <div id="genderChart"></div>
+        </div>
+
+        <div class="chart">
+            <h2>User Frequency by Age Group</h2>
+            <div id="ageGroupChart"></div>
+        </div>
+
+        <!-- Invoice Lookup -->
+        <div class="chart">
+            <h2>Search Invoices by TRN</h2>
+            <input type="text" id="searchTRN" placeholder="Enter TRN (e.g. 123-456-789)" style="padding: 0.5rem; width: 250px; margin-right: 10px;" />
+            <button onclick="searchInvoicesByTRN()" class="btn">Search</button>
+            <div id="invoiceResults" style="margin-top: 1rem;"></div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+<footer>
+        <p>&copy; 2025 Lily of the Valley Spa from Levy's Corp</p>
+        <strong><a href="#Top">Back to the Top</a></strong>
+    </footer>
+
+</html>

@@ -1,0 +1,90 @@
+Question 3
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="style.css"/> <!--Connects the sheet to CSS-->
+
+    <link rel="icon" type="image/x-icon" href="Images/Lily Logo.png">
+
+    <title>Lily of the Valley Spa</title>
+</head>
+<body>
+    <header> 
+        <nav>
+            
+           <a href="index.html"> <div class="logo">
+                <img src="Images/Lily of the Valley Spa Logo.png" alt="Entire Logo" class="logo-image">
+            </div></a>
+           
+                <ul class="header-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="index.html">Login</a></li>
+                    <li><a href="registration.html">Registration</a></li>
+                    <li><a href="Products.html">Products</a></li>
+                    <li><a href="Cart.html">Cart<span id="cartCounter" class="cart-count">0</span></a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="invoice.html">Invoice</a></li>
+                    <li><a href="dashboard.html">User Frequency & Invoice List</a></li>
+                </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+
+        <div id="cart">
+
+            <h1 class="section-title">Your Shopping Cart</h1>
+
+            <div class="cart-container">
+
+                <div class="cart-items">
+
+                    <div id="cartItems">
+                        <!--Cart Items will appear here-->
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+
+                    <h3>Order Summary</h3>
+
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Discount (10%):</span>
+                        <span id="discount">$0.00</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Tax (15%):</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+
+                    <div class="summary-row total-row">
+                        <span>Total:</span>
+                        <span id="total">$0.00</span>
+                    </div>
+
+                     <div class="cart-actions">
+                        <button class="clear btn" onclick="clearCart()">Clear All</button>
+                       <a href="Products.html"> <button class="btn">Close Cart</button></a>
+                        <a href="checkout.html"> <button class="btn btn-primary">Check Out</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script> <!--Connects to Javascript-->
+    </body>
+    <footer>
+   
+    <p>&copy; 2025 Lily of the Valley Spa from Levy's Corp </p>
+       <strong> <a href="#Top"> Back to the Top &nbsp; </a> </strong>
+   
+    </footer>
