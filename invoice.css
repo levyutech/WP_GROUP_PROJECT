@@ -1,0 +1,112 @@
+/* invoice.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.main-content {
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    color: #2c6f2d;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.invoice-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    line-height: 1.6;
+}
+
+.invoice-box h2 {
+    margin-top: 0;
+    color: #2c6f2d;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+}
+
+.invoice-box p {
+    margin: 0.6rem 0;
+}
+
+/* Table styling */
+.invoice-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.invoice-box th,
+.invoice-box td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.invoice-box th {
+    background-color: #f1f8f1;
+    font-weight: bold;
+    color: #2c6f2d;
+}
+
+.invoice-box tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Totals alignment */
+.invoice-totals {
+    text-align: right;
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.invoice-totals p {
+    margin: 0.4rem 0;
+}
+
+.invoice-totals h3 {
+    color: #2c6f2d;
+    margin-top: 0.8rem;
+    font-size: 1.4rem;
+}
+
+/* Email success message */
+.invoice-message {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #e8f5e9;
+    border-left: 4px solid #2c6f2d;
+    color: #2c6f2d;
+    font-weight: bold;
+}
+
+/* Back button */
+.back-btn-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.back-btn {
+    padding: 0.6rem 1.5rem;
+    background-color: #2c6f2d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #225522;
+}
