@@ -1,9 +1,370 @@
-// Javascript Functionality
+//Javascript Functionality
 /* Group Members:
+    Adien-Neil McLeod: 2407731
     Lorri-Ann Levy: 2407726
 */
 
 // Question 1: User Authentification
+
+// =========================
+// User Authentication & Registration (LocalStorage)
+// =========================
+
+// Get the RegistrationData array from localStorage (or empty array if none)
+function getRegistrationData() {
+    // Parse the JSON string from localStorage; if null, use empty array
+    return JSON.parse(localStorage.getItem('RegistrationData')) || [];
+}
+
+// Save the updated RegistrationData array back to localStorage
+function saveRegistrationData(data) {
+    localStorage.setItem('RegistrationData', JSON.stringify(data));
+}
+
+// Calculate age from a date-of-birth string (YYYY-MM-DD)
+function calculateAge(dobString) {
+    const today = new Date();
+    const dob = new Date(dobString);
+
+    let age = today.getFullYear() - dob.getFullYear();
+    const m = today.getMonth() - dob.getMonth();
+
+    // Adjust age if birthday has not occurred yet this year
+    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+        age--;
+    }
+
+    return age;
+}
+
+// Simple TRN format check: 000-000-000
+function isValidTrnFormat(trn) {
+    const trnRegex = /^\d{3}-\d{3}-\d{3}$/;
+    return trnRegex.test(trn);
+}
+
+// =========================
+// Registration Form Validation & Storage
+// =========================
+
+function validateRegistrationForm() {
+    // Get field values from the form
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const dob = document.getElementById('dob').value;
+    const gender = document.getElementById('gender').value;
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const trn = document.getElementById('trn').value.trim();
+    const password = document.getElementById('regPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    let validResponse = true;
+
+    // Clear previous error messages
+    document.getElementById('firstNameError').textContent = '';
+    document.getElementById('lastNameError').textContent = '';
+    document.getElementById('dobError').textContent = '';
+    document.getElementById('genderError').textContent = '';
+    document.getElementById('phoneError').textContent = '';
+    document.getElementById('emailError').textContent = '';
+    document.getElementById('trnError').textContent = '';
+    document.getElementById('regPasswordError').textContent = '';
+    document.getElementById('confirmPasswordError').textContent = '';
+
+    // --- Required field checks ---
+
+    if (!firstName) {
+        document.getElementById('firstNameError').textContent = 'First name is required';
+        validResponse = false;
+    }
+
+    if (!lastName) {
+        document.getElementById('lastNameError').textContent = 'Last name is required';
+        validResponse = false;
+    }
+
+    if (!dob) {
+        document.getElementById('dobError').textContent = 'Date of birth is required';
+        validResponse = false;
+    }
+
+    if (!gender) {
+        document.getElementById('genderError').textContent = 'Gender is required';
+        validResponse = false;
+    }
+
+    if (!phone) {
+        document.getElementById('phoneError').textContent = 'Phone number is required';
+        validResponse = false;
+    }
+
+    if (!email) {
+        document.getElementById('emailError').textContent = 'Email is required';
+        validResponse = false;
+    } else if (!email.includes('@') || !email.includes('.')) {
+        document.getElementById('emailError').textContent = 'Please enter a valid email address';
+        validResponse = false;
+    }
+
+    if (!trn) {
+        document.getElementById('trnError').textContent = 'TRN is required';
+        validResponse = false;
+    } else if (!isValidTrnFormat(trn)) {
+        document.getElementById('trnError').textContent = 'TRN must be in the format 000-000-000';
+        validResponse = false;
+    }
+
+    // Password must be at least 8 characters
+    if (!password) {
+        document.getElementById('regPasswordError').textContent = 'Password is required';
+        validResponse = false;
+    } else if (password.length < 8) {
+        document.getElementById('regPasswordError').textContent = 'Password must be at least 8 characters';
+        validResponse = false;
+    }
+
+    // Confirm password must match
+    if (!confirmPassword) {
+        document.getElementById('confirmPasswordError').textContent = 'Please confirm your password';
+        validResponse = false;
+    } else if (password !== confirmPassword) {
+        document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+        validResponse = false;
+    }
+
+    // Age check: must be over 18
+    if (dob) {
+        const age = calculateAge(dob);
+        if (age < 18) {
+            document.getElementById('dobError').textContent = 'You must be at least 18 years old to register';
+            validResponse = false;
+        }
+    }
+
+    // TRN uniqueness check: TRN must not already exist in RegistrationData
+    if (trn && isValidTrnFormat(trn)) {
+        const registrationData = getRegistrationData();
+        const existingUser = registrationData.find(u => u.trn === trn);
+        if (existingUser) {
+            document.getElementById('trnError').textContent = 'This TRN is already registered';
+            validResponse = false;
+        }
+    }
+
+    // If any validation fails, stop here
+    if (!validResponse) {
+        return false;
+    }
+
+    // --- Build registration record object to store in localStorage ---
+    const registrationData = getRegistrationData();
+
+    const newUser = {
+        firstName: firstName,
+        lastName: lastName,
+        dob: dob,
+        gender: gender,
+       phone: phone,
+        email: email,
+        trn: trn,                       // used as username for login
+        password: password,             // NOTE: stored in plain text for this assignment
+        dateOfRegistration: new Date().toISOString(), // current date/time
+        cart: {},                       // empty cart object
+        invoices: []                    // empty invoices array
+    };
+
+    // Append new user to the RegistrationData array
+    registrationData.push(newUser);
+
+    // Save updated array back to localStorage
+    saveRegistrationData(registrationData);
+
+    // Show success message and redirect to login page
+    alert('Your Registration was successful! Welcome to Lily of the Valley Spa.');
+    window.location.href = "login.html";
+
+    return true;
+}
+
+// =========================
+// Login Form Validation (TRN + Password)
+// =========================
+
+// Track login attempts using localStorage so it persists
+function getLoginAttempts() {
+    return Number(localStorage.getItem('loginAttempts')) || 0;
+}
+
+function setLoginAttempts(value) {
+    localStorage.setItem('loginAttempts', String(value));
+}
+
+function validateLoginForm() {
+    const trn = document.getElementById('loginTrn').value.trim();
+    const password = document.getElementById('loginPassword').value;
+
+    let validResponse = true;
+
+    // Clear previous errors
+    document.getElementById('loginTrnError').textContent = '';
+    document.getElementById('loginPasswordError').textContent = '';
+
+    // Get current failed attempt count from localStorage
+    let attempts = getLoginAttempts();
+
+    // Basic validation for empty fields
+    if (!trn) {
+        document.getElementById('loginTrnError').textContent = 'TRN is required';
+        validResponse = false;
+    } else if (!isValidTrnFormat(trn)) {
+        document.getElementById('loginTrnError').textContent = 'TRN must be in the format 000-000-000';
+        validResponse = false;
+    }
+
+    if (!password) {
+        document.getElementById('loginPasswordError').textContent = 'Password is required';
+        validResponse = false;
+    }
+
+    if (!validResponse) {
+        return false;
+    }
+
+    // Look up the user in RegistrationData
+    const registrationData = getRegistrationData();
+    const user = registrationData.find(u => u.trn === trn && u.password === password);
+
+    if (user) {
+        // Successful login
+        alert('Login successful!');
+        setLoginAttempts(0); // reset attempts
+
+        // Optionally store current user TRN
+        localStorage.setItem('CurrentUserTRN', trn);
+
+        // Redirect to product catalog
+        window.location.href = "Products.html";
+        return true;
+    } else {
+        // Failed login attempt
+        attempts++;
+        setLoginAttempts(attempts);
+
+        if (attempts >= 3) {
+            alert('Too many failed attempts. Your account is now locked.');
+            window.location.href = "account_locked.html";
+        } else {
+            const remaining = 3 - attempts;
+            alert(`Invalid TRN or password. You have ${remaining} attempt(s) remaining.`);
+        }
+        return false;
+    }
+}
+
+// =========================
+// Reset Password (via hyperlink on login page)
+// =========================
+
+function resetPasswordFlow() {
+    // Ask user for their TRN
+    const trnInput = prompt('Enter your TRN (000-000-000) to reset your password:');
+    if (!trnInput) {
+        return; // user cancelled
+    }
+
+    const trn = trnInput.trim();
+    if (!isValidTrnFormat(trn)) {
+        alert('Invalid TRN format. Please use 000-000-000.');
+        return;
+    }
+
+    const registrationData = getRegistrationData();
+    const userIndex = registrationData.findIndex(u => u.trn === trn);
+
+    if (userIndex === -1) {
+        alert('No account found with that TRN.');
+        return;
+    }
+
+    // Ask for a new password
+    const newPassword = prompt('Enter your new password (at least 8 characters):');
+    if (!newPassword) {
+        return; // user cancelled
+    }
+
+    if (newPassword.length < 8) {
+        alert('Password must be at least 8 characters.');
+        return;
+    }
+
+    // Update password in the array
+    registrationData[userIndex].password = newPassword;
+    saveRegistrationData(registrationData);
+
+    // Reset login attempts so user can try again
+    setLoginAttempts(0);
+
+    alert('Your password has been updated successfully. You can now log in with your new password.');
+}
+
+// =========================
+// Attach auth event listeners
+// =========================
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Login form
+    const loginForm = document.getElementById('validateLoginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            validateLoginForm();
+        });
+
+        const loginCancelBtn = document.getElementById('loginCancelBtn');
+        if (loginCancelBtn) {
+            loginCancelBtn.addEventListener('click', function () {
+                loginForm.reset();
+                document.getElementById('loginTrnError').textContent = '';
+                document.getElementById('loginPasswordError').textContent = '';
+            });
+        }
+
+        const resetLink = document.getElementById('resetPasswordLink');
+        if (resetLink) {
+            resetLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                resetPasswordFlow();
+            });
+        }
+    }
+
+    // Registration form
+    const registerForm = document.getElementById('validateRegistrationForm');
+    if (registerForm) {
+        registerForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            validateRegistrationForm();
+        });
+
+        const registrationCancelBtn = document.getElementById('registrationCancelBtn');
+        if (registrationCancelBtn) {
+            registrationCancelBtn.addEventListener('click', function () {
+                registerForm.reset();
+                document.getElementById('firstNameError').textContent = '';
+                document.getElementById('lastNameError').textContent = '';
+                document.getElementById('dobError').textContent = '';
+                document.getElementById('genderError').textContent = '';
+                document.getElementById('phoneError').textContent = '';
+                document.getElementById('emailError').textContent = '';
+                document.getElementById('trnError').textContent = '';
+                document.getElementById('regPasswordError').textContent = '';
+                document.getElementById('confirmPasswordError').textContent = '';
+            });
+        }
+    }
+});
+
 
 
 
@@ -26,19 +387,19 @@ const set_Products = [
         name: "Lavender Bath and Body Oil",
         price:  2500.99,
         description: "Pure Lavender Body Oil in violet glass with dropper. 100% natural, deeply hydrating, and calming. Perfect for skin, massage, or bath. 1 fl oz.",
-        image: "Images/Bath oil.jpg"
+        image: "assets/Bath oil.jpg"
     },
     {
         name: "Golden Hour Turmeric Scrub",
         price: 1200.20,
         description: "Turmeric Glow Body Scrub in glass jar. Natural exfoliating sugar with turmeric, oils, and warm spice. Brightens, smooths, and nourishes skin. 4 oz.",
-        image: "Images/tumeric scrub.jpg"
+        image: "assets/tumeric scrub.jpg"
     },
     {
         name: "Soy Milk & Rice Body Cleanser Set",
         price: 1000.99,
         description: "Fresh Soy Milk & Rice Body Set: gentle cleanser (260ml), nourishing lotion (260ml), and soy face cleanser (150ml). Plant-based, soothing, hydrating.",
-        image: "Images/body wash.jpg"
+        image: "assets/body wash.jpg"
     },
 
     //Skincare and Facial Products
@@ -46,19 +407,19 @@ const set_Products = [
         name: "Bubble Relaxing Facial Cleansing Oil",
         price: 1300.55,
         description: "ZEESEA Bubble Relaxing Cleansing Oil in pump bottle. Foamy, gentle makeup remover with calming marine scent. 185ml.",
-        image: "Images/face.jpg"
+        image: "assets/face.jpg"
     },
     {
         name: "Watermelon Glow Sleeping Mask",
         price: 1200.55,
         description: "Glow Recipe Watermelon Glow Sleeping Mask in glass jar. Hydrating, radiance-boosting overnight treatment. 80ml.",
-        image: "Images/face mask.jpg"
+        image: "assets/face mask.jpg"
     },
     {
         name: "Dr. Pepti Peptide Volume Waterglow Serum",
         price: 1000.00,
         description: "Dr. Pepti Peptide Volume Waterglow Serum in pump bottle. Hydrating, plumping, glow-boosting peptides. 50ml.",
-        image: "Images/face serum.jpg"
+        image: "assets/face serum.jpg"
     },
 
     //Hand and Foot Care Products
@@ -67,13 +428,13 @@ const set_Products = [
         name: "HAAN Hand Cream Collection",
         price: 1000.20,
         description: "HAAN Hand Cream Trio: Coco Cooler, Fig Fizz, Carrot Kick. 96% natural, prebiotic-rich, fast-absorbing. 50ml each.",
-        image: "Images/hand cream collection.jpg"
+        image: "assets/hand cream collection.jpg"
     },
     {
         name: "LondonTown Nature Blend",
         price: 850.00,
         description: "LondonTown Nature Blend Foot Scrub in tube. Natural exfoliant, invigorating treat for tired feet. 4.2 oz / 120 g.",
-        image: "Images/foot scrub.jpg"
+        image: "assets/foot scrub.jpg"
     },
     {
         name: "Hyda Spa Foot Bath Massager",
@@ -87,19 +448,19 @@ const set_Products = [
         name: "Respire",
         price: 500.00,
         description: "Respire Natural Deodorant Roll-On. Orange Blossom scent, 100% natural, aluminum-free. 50ml.",
-        image: "Images/deoderant.jpg"
+        image: "assets/deoderant.jpg"
     },
     {
         name: "Disco",
         price: 600.25,
         description: "Disco Eucalyptus Deodorant Stick. Natural, aluminum-free, refreshing scent. 2.5 oz (71 g).",
-        image: "Images/euc. deoderant.jpg"
+        image: "assets/euc. deoderant.jpg"
     },
     {
         name: "Modern Botany",
         price: 540.99,
         description: "Modern Botany Natural Deodorant Spray. Gentle, plant-based, sensitive-skin friendly. 100ml.",
-        image: "Images/mist deoderant.jpg"
+        image: "assets/mist deoderant.jpg"
     },
 
     //Fragrance Products
@@ -107,25 +468,25 @@ const set_Products = [
         name: "Lily of the Valley Perfume Oil",
         price: 350.00,
         description: "Sopranolabs Lily of the Valley Perfume Oil. Clean, vegan roll-on in coconut oil. 10ml.",
-        image: "Images/lily of the valley fragrance.jpg"
+        image: "assets/lily of the valley fragrance.jpg"
     },
     {
         name: "Lavender Esscence",
         price: 400.90,
         description: "Floral Collection Lavender Eau de Toilette. Fresh, calming lavender scent. 100ml.",
-        image: "Images/lavender fragrance.jpg"
+        image: "assets/lavender fragrance.jpg"
     },
     {
         name: "Haute Sauce - Strawberry Glaze Edible Fragrance",
         price: 578.99,
         description: "Haute Sauce Strawberry Glaze Edible Fragrance. Sweet, dessert-inspired scent with natural oils. 50ml.",
-        image: "Images/strawberry scent.jpg"
+        image: "assets/strawberry scent.jpg"
     },
     {
         name: "Haute Sauce - Vanilla Coco Edible Fragrance",
         price: 530.99,
         description: "Haute Sauce Vanilla Coco Edible Fragrance. Creamy vanilla-coconut scent with natural oils. 50ml.",
-        image: "Images/coconut fragrance.jpg"
+        image: "assets/coconut fragrance.jpg"
     },
 
 ];
@@ -164,6 +525,8 @@ function loadProducts() {
         `;
     });
 }
+
+//Question 3: Cart Functionality
 
 //Cart Page
 
@@ -348,6 +711,8 @@ document.addEventListener('DOMContentLoaded', function()
     }
 });
 
+
+//Question 4: Checkout Functionality
 
 //Checkout Page
 // Checkout Functionality

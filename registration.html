@@ -1,3 +1,10 @@
+/* Group Members:
+    Adien-Neil McLeod: 2407731
+    Lorri-Ann Levy: 2407726
+*/
+
+// Question 1: User Authentification
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,27 +13,26 @@
     
     <link rel="stylesheet" href="style.css"/> <!--Connects the sheet to CSS-->
     
-    <link rel="icon" type="image/x-icon" href="Images/Lily Logo.png">
+    <link rel="icon" type="image/x-icon" href="assets/Lily Logo.png">
 
     <title>Lily of the Valley Spa</title>
 </head>
 <body>
-    <header> 
+    <header> <!--Header for Registration Page-->
         <nav>
-            
-           <a href="index.html"> <div class="logo">
-                <img src="Images/Lily of the Valley Spa Logo.png" alt="Entire Logo" class="logo-image">
+            <a href="index.html"><div class="logo">
+                <img src="assets/Lily of the Valley Spa Logo.png" alt="Entire Logo" class="logo-image">
             </div></a>
            
                 <ul class="header-links">
                     <li><a href="home.html">Home</a></li>
-                    <li><a href="index.html">Login</a></li>
+                    <li><a href="login.html">Login</a></li>
                     <li><a href="registration.html">Registration</a></li>
                     <li><a href="Products.html">Products</a></li>
-                    <li><a href="Cart.html">Cart<span id="cartCounter" class="cart-count">0</span></a></li>
+                    <li><a href="Cart.html">Cart <span id="cartCounter" class="cart-count">0</span></a></li>
                     <li><a href="checkout.html">Checkout</a></li>
                     <li><a href="invoice.html">Invoice</a></li>
-                    <li><a href="dashboard.html">User Frequency & Invoice List</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
                 </ul>
         </nav>
     </header>
@@ -36,8 +42,8 @@
 
                 <h2 class="form-title">Create Your Account</h2> <!--Heading-->
 
-                <form id="validateRegistrationForm" novalidate> <!--Registration Form-->
-
+                <!-- Updated Registration Form with TRN, gender, phone, and cancel button -->
+                <form id="validateRegistrationForm" novalidate>
                     <!--First Name -->
                     <div class="form-group">
                         <label for="firstName">First Name:</label>
@@ -58,6 +64,26 @@
                         <input type="date" id="dob" name="dob" required>
                         <div class="error-message" id="dobError"></div>
                     </div>
+
+                    <!--Gender -->
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">-- Select Gender --</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Other">Other</option>
+                            <option value="Prefer not to say">Prefer not to say</option>
+                        </select>
+                        <div class="error-message" id="genderError"></div>
+                    </div>
+
+                    <!--Phone Number -->
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" name="phone" required>
+                        <div class="error-message" id="phoneError"></div>
+                    </div>
                     
                     <!--Email -->
                     <div class="form-group">
@@ -66,11 +92,11 @@
                         <div class="error-message" id="emailError"></div>
                     </div>
                     
-                    <!--Username -->
+                    <!--TRN (used as username) -->
                     <div class="form-group">
-                        <label for="regUsername">Username:</label>
-                        <input type="text" id="regUsername" name="username" required>
-                        <div class="error-message" id="regUsernameError"></div>
+                        <label for="trn">Tax Registration Number (TRN):</label>
+                        <input type="text" id="trn" name="trn" placeholder="000-000-000" required>
+                        <div class="error-message" id="trnError"></div>
                     </div>
                     
                     <!--Password -->
@@ -87,8 +113,11 @@
                         <div class="error-message" id="confirmPasswordError"></div>
                     </div>
                     
-                    <!--Submit Button-->
+                    <!--Buttons-->
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Register</button>
+                    <button type="button" id="registrationCancelBtn" class="btn" style="width: 100%; margin-top: 0.75rem;">
+                        Cancel
+                    </button>
 
                 </form>
                 

@@ -6,46 +6,335 @@
     
     <link rel="stylesheet" href="style.css"/> <!--Connects the sheet to CSS-->
 
-    <link rel="icon" type="image/x-icon" href="Images/Lily Logo.png">
+    <link rel="icon" type="image/x-icon" href="assets/Lily Logo.png">
 
     <title>Lily of the Valley Spa</title>
 </head>
 <body>
-   <header> 
+    <header> <!--Header for Product Page-->
         <nav>
-            <a href="index.html">
-                <div class="logo">
-                    <img src="Images/Lily of the Valley Spa Logo.png" alt="Logo" class="logo-image">
-                </div>
-            </a>
-            <ul class="header-links">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="index.html">Login</a></li>
-                <li><a href="registration.html">Registration</a></li>
-                <li><a href="Products.html">Products</a></li>
-                <li><a href="Cart.html">Cart <span id="cartCounter" class="cart-count">0</span></a></li>
-                <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="invoice.html">Invoice</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-            </ul>
+            <a href="index.html"><div class="logo">
+                <img src="assets/Lily of the Valley Spa Logo.png" alt="Entire Logo" class="logo-image">
+            </div></a>
+           
+                <ul class="header-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="registration.html">Registration</a></li>
+                    <li><a href="Products.html">Products</a></li>
+                    <li><a href="Cart.html">Cart <span id="cartCounter" class="cart-count">0</span></a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="invoice.html">Invoice</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                </ul>
         </nav>
     </header>
 
     <main class="main-content">
-        <section class="intro-box">
-            <h1>Take your time to View our Premium Products</h1>
-            <h2>Pure and Organic Care for You</h2>
-            <p>Immerse yourself in our curated collection of organic bath and body essentials. Each product is thoughtfully crafted to transform your daily routine into a moment of pure, sustainable luxury.</p>
-            <p>Get your first order with a <strong>10% discount</strong>!!</p>
+
+        <div class="page">
+
+            <section class="intro-box">
+
+                <a name="Top"><h1>Take your time to View our Premium Products</h1></a>
+
+                <h2>Pure and Organic Care for You</h2>
+
+                <p>Immerse yourself in our curated collection of organic bath and 
+                body essentials. Each product is thoughtfully crafted to transform 
+                your daily routine into a moment of pure, sustainable luxury.</p>
+                <p>Get your first order with a 10% discount!! &#128513;</p>
+            </section>
+
+        </div>
+
+        <!--Bath and Shower Section-->
+        <section id="bath-shower">
+            <h1 class="section-title">Bath & Shower</h1>
+
+            <div class="product-container">
+
+            <div class="product-shower"> <!--Bath Oil-->
+
+                <div class="featured-badge">New</div>
+            
+                    <img src="assets/Bath oil.jpg" alt="bath oil" class="product-shower-image">
+                    
+                    <h3>Lavender Bath and Body Oil</h3>
+                    <p>Unwind with our harmonious blend of calming lavender and
+                    eucalyptus, transforming your bath into a tranquil, dew-kissed retreat.</p>
+                    <p class="product-price">$2500.99</p>
+                    <button class="btn" onclick="addToCart(0)">Add to Cart</button>
+            </div>
+            <div class="product-shower"> <!--Tumeric Scrub-->
+                <div class="featured-badge">Best Seller</div>
+
+                    <img src="assets/tumeric scrub.jpg" alt="tumeric scrub" class="product-shower-image">
+
+                    <h3>Golden Hour Turmeric Scrub</h3>
+
+                    <p>Our potent, natural blend gently revitalizes and exfoliates softly. Turmeric's brightening 
+                    properties help even skin tone, while creamy oils moisturize, for a healthy radiant glow.</p>
+                    <p class="product-price">$1,200.20</p>
+
+                    <button class="btn" onclick="addToCart(1)">Add to Cart</button>
+            </div>
+            <div class="product-shower">
+
+                    <img src="assets/body wash.jpg" alt="Body wash" class="product-shower-image">
+
+                    <h3>Soy Milk & Rice Body Cleanser Set</h3>
+
+                    <p>A gentle cleanser enriched with soothing plant-based milks, cerella 
+                    rice, and linseed. This creamy formula nourishes the skin while it cleanses, leaving
+                    it feeling soft and comfortably refreshed.</p>
+                    <p class="product-price">$1,000.99</p>
+
+                    <button class="btn" onclick="addToCart(2)">Add to Cart</button>
+            </div>
         </section>
 
-        <!-- DYNAMIC PRODUCT GRID -->
-        <div id="productList" class="product-grid"></div>
-    </main>
+        <!--Skincare and Facial Section-->
+        <section id="skincare">
+            <h1 class="section-title">Skincare and Facial Cleansing</h1>
 
+            <div class="product-container"> <!--Bubble Cleansing Oil-->
+
+            <div class="product-skincare">
+                <div class="featured-badge">Best Seller</div>
+                    <img src="assets/face.jpg" alt="face" class="product-skin">
+
+                    <h3>Bubble Relaxing Facial Cleansing Oil</h3>
+
+                    <p>Watch your routine become a moment of calm. This foaming cleansing facial oil effortlessly 
+                    dissolves the day's buildup. It cleanses deeply without stripping the skin, leaving behind only a pure, silky relaxation.</p>
+                    <p class="product-price">$1,300.55</p>
+
+                    <button class="btn" onclick="addToCart(3)">Add to Cart</button>
+            </div>
+
+            <div class="product-skincare"> <!--Face Masks-->
+                    <img src="assets/face mask.jpg" alt="face mask" class="product-skin">
+                    <div class="featured-badge">Favourite</div>
+                    <h3>Watermelon Glow Sleeping Mask</h3>
+
+                    <p>This essential hydrating mask is infused with watermelon extract and soothing enzymes to gently exfoliate, 
+                    replenish moisture, and reveal a dewy, glowing complexion by morning.</p>
+                    <p class="product-price">$1,200.55</p>
+
+                    <button class="btn" onclick="addToCart(4)">Add to Cart</button>
+            </div>
+
+            <div class="product-skincare"> <!--Face Serum-->
+                    <img src="assets/face serum.jpg" alt="face serum" class="product-skin">
+
+                    <h3>Dr. Pepti Peptide Volume Waterglow Serum</h3>
+
+                    <p>See a plumper, dewy glow. Our powerful peptide complex firms skin while hyaluronic 
+                    acid delivers intense hydration. Brightening niacinamide evens tone for instantly radiant, 
+                    lit-from-within skin.</p>
+                    <p class="product-price">$1,000.00</p>
+
+                    <button class="btn" onclick="addToCart(5)">Add to Cart</button>
+            </div>
+        </section>
+
+        <!--Hand and Foot Care Section-->
+        <section id="hand-foot">
+            <h1 class="section-title">Hand and Foot Care</h1>
+
+            <div class="product-container">
+
+            <div class="product-skincare"> <!--Hand Cream-->
+
+                    <img src="assets/hand cream collection.jpg" alt="hand cream" class="product-skin">
+
+                    <h3>HAAN Hand Cream Collection</h3>
+
+                    <p>Nourish your hands with 95% natural formulas. Enriched with a prebiotic 
+                    complex, this moisturising textures absorb instantly to strengthen your skin's 
+                    barrier and lock in moisture.</p>
+                    <p class="product-price">$1,000.20</p>
+
+                    <button class="btn" onclick="addToCart(6)">Add to Cart</button>
+            </div>
+
+            <div class="product-skincare"> <!--Foot Scrub-->
+
+                    <img src="assets/foot scrub.jpg" alt="foot scrub" class="product-skin">
+
+                    <h3>LondonTown Nature Blend </h3>
+
+                    <p>Our foot scrub combines aloe vera, peppermint and green tea ingredients to create an effective
+                    scrub that leaves your feet feeling silky smooth and renewed.</p>
+                    <p class="product-price">$850.00</p>
+
+                    <button class="btn" onclick="addToCart(7)">Add to Cart</button>
+            </div>
+
+             <div class="product-skincare"> <!--Foot bath massager-->
+
+                <div class="featured-badge-negative">Save 4%</div>
+                    <img src="assets/foot bath massager.jpg" alt="foot massager" class="product-skin">
+
+                    <h3>Hyda Spa Foot Bath Massager</h3>
+
+                    <p>The Hyda Spa provides heated bubbles, vibration and roller massagers.
+                    The Liquid Crystal Display puts total relaxation at your fingertips, leaving your feet feeling refreshed and renewed.</p>
+                    
+                    <p class="product-price">
+                        <span style="color: red; font-weight: bold;">$14,880.95</span>
+                        <br>
+                    </p>
+                        <s>$15,500.99</s> 
+                    <br>
+                        <button class="btn" onclick="addToCart(8)">Add to Cart</button>
+            </div>
+        </section>
+
+        <!--Deodorant & Antiperspirant Section-->
+        <section id="deoderant">
+            <h1 class="section-title">Deodorant & Antiperspirant</h1>
+            <div class="product-container">
+
+                <div class="product-skincare"> <!--Respire Natural Deoderant-->
+
+                    <div class="featured-badge">New</div>
+
+                    <img src="assets/deoderant.jpg" alt="deoderant " class="product-skin">
+
+                    <h3>Respire</h3>
+
+                    <p>Make your body a priority with our ultimate naturally trio of orange, aloe vera, and rosemary. 
+                    Orange provides a fresh scent while fighting bacteria. Aloe vera calms the skin, and rosemary offers 
+                    natural protection to keep you feeling fresh and confident all day.</p>
+                    <p class="product-price">$500.00</p>
+
+                    <button class="btn" onclick="addToCart(9)">Add to Cart</button>
+
+
+                </div>
+
+                <!--Disco Deoderant-->
+                <div class="product-skincare">
+
+                    <img src="assets/euc. deoderant.jpg" alt="deoderant " class="product-skin">
+
+                    <h3>Disco</h3>
+
+                    <p>Meet a fresh, confident you. This natural deodorant combines the crisp, 
+                    cleansing power of eucalyptus with odor-fighting minerals to keep you feeling 
+                    refreshed and protected all day long.</p>
+
+                    <p class="product-price">$600.25</p>
+
+                    <button class="btn" onclick="addToCart(10)">Add to Cart</button>
+
+                </div>
+
+                <!--Modern Botany-->
+                <div class="product-skincare">
+
+                    <div class="featured-badge">Favourite</div>
+
+                    <img src="assets/mist deoderant.jpg" alt="deoderant " class="product-skin">
+
+                    <h3>Modern Botany</h3>
+
+                    <p>Experience all-day freshness with our dermatologist-tested product. 
+                    Designed especially for sensitive skin, it provides effective, natural odor protection without compromise.</p>
+                    <p class="product-price">$540.99</p>
+
+                    <button class="btn" onclick="addToCart(11)">Add to Cart</button>
+
+
+                </div>
+            </section>
+
+        <!--Fragrance Section-->
+        <section id="fragrance">
+            <h1 class="section-title">Fragrance</h1>
+
+            <div class="product-container">
+
+                <!--Lily Frgrance-->
+                <div class="product-skincare">
+
+                    <img src="assets/lily of the valley fragrance.jpg" alt="fragrance " class="product-skin">
+
+                    <h3>Lily of the Valley Perfume Oil</h3>
+
+                    <p>Let the uplifting scent of lily ease your mind and lift your spirits throughout 
+                    the day. The blend of pure essential oils like coconut and peppermint ensures the fragrance long-lasting scent naturally mixes with your 
+                    skin's chemistry. This creates a unique personal aroma that feels like a fresh start everyday.</p>
+                    <p class="product-price">$350.00</p>
+
+                    <button class="btn" onclick="addToCart(12)">Add to Cart</button>
+
+
+                </div>
+
+                <!--Lavender Fragrance-->
+                <div class="product-skincare">
+
+                    <img src="assets/lavender fragrance.jpg" alt="fragrance " class="product-skin">
+
+                    <h3>Lavender Esscence </h3>
+
+                    <p>Discover your favourite lavender scent. Lavender essential oil melts 
+                    away daily stress while rose uplifts your mood, creating a balanced calm. 
+                    A hint of vanilla and nourishing carrier oils provide lasting comfort, 
+                    leaving your skin scented and your mind at ease.</p>
+                    <p class="product-price">$400.90</p>
+
+                    <button class="btn" onclick="addToCart(13)">Add to Cart</button>
+
+                </div>
+
+                <!--Strawberry Fragrance-->
+                <div class="product-skincare">
+
+                    <div class="featured-badge">Favourite</div>
+                    <img src="assets/strawberry scent.jpg" alt="fragrance " class="product-skin">
+
+                    <h3>Haute Sauce - Strawberry Glaze Edible Fragrance</h3>
+
+                    <p>Indulge in the sweet allure of sun-ripened strawberries with this 
+                    deliciously fragrance. This formula lets you taste your scent as you get ready for your day, 
+                    leaving a tempting glaze of strawberry sweetness on your skin and lips.</p>
+                    <p class="product-price">$578.99</p>
+
+                    <button class="btn" onclick="addToCart(14)">Add to Cart</button>
+
+
+                </div>
+
+                <!--Coconut Vanilla Fragrance-->
+                <div class="product-skincare">
+
+                    <div class="featured-badge">New</div>
+                    <img src="assets/coconut fragrance.jpg" alt="fragrance " class="product-skin">
+
+                    <h3>Haute Sauce - Vanilla Coco Edible Fragrance</h3>
+
+                    <p>Surround yourself with the creamy comfort of coconut and warm, sweet vanilla. 
+                    This edible fragrance lets you indulge in a tropical escape, leaving a deliciously 
+                    smooth, dessert-like scent on your skin.</p>
+
+                    <p class="product-price">$530.99</p>
+
+                    <button class="btn" onclick="addToCart(15)">Add to Cart</button>
+
+
+                </div>
+            </section>
+
+    </main>
     <script src="script.js"></script> <!--Connects to Javascript-->
-    </body>
-    <footer>
-        <p>© 2025 Lily of the Valley Spa from Levy's Corp</p>
-        <strong><a href="#Top">Back to the Top</a></strong>
-    </footer>
+</body>
+<footer>
+    
+    <p>&copy; 2025 Lily of the Valley Spa from Levy's Corp </p>
+       <strong> <a href="#Top"> Back to the Top &nbsp; </a> </strong>
+   
+</footer>

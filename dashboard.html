@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/x-icon" href="Images/Lily Logo.png" />
+    <link rel="icon" type="image/x-icon" href="assets/Lily Logo.png" />
     <title>Dashboard - Lily of the Valley Spa</title>
 </head>
 <body>
@@ -12,42 +12,50 @@
         <nav>
             
            <a href="index.html"> <div class="logo">
-                <img src="Images/Lily of the Valley Spa Logo.png" alt="Entire Logo" class="logo-image">
+                <img src="assets/Lily of the Valley Spa Logo.png" alt="Entire Logo" class="logo-image">
             </div></a>
            
                 <ul class="header-links">
                     <li><a href="home.html">Home</a></li>
-                    <li><a href="index.html">Login</a></li>
+                    <li><a href="login.html">Login</a></li>
                     <li><a href="registration.html">Registration</a></li>
                     <li><a href="Products.html">Products</a></li>
-                    <li><a href="Cart.html">Cart<span id="cartCounter" class="cart-count">0</span></a></li>
+                    <li><a href="Cart.html">Cart <span id="cartCounter" class="cart-count">0</span></a></li>
                     <li><a href="checkout.html">Checkout</a></li>
                     <li><a href="invoice.html">Invoice</a></li>
-                    <li><a href="dashboard.html">User Frequency & Invoice List</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
                 </ul>
         </nav>
     </header>
 
-    <main class="main-content" style="padding: 2rem;">
-        <h1 class="section-title">Admin Dashboard</h1>
+    <main class="main-content">
+        <section class="intro-box">
+            <h1>Admin Dashboard</h1>
+            <h2>User Analytics & Invoice Management</h2>
+            <p>View user statistics and manage invoices from this comprehensive dashboard.</p>
+        </section>
 
-        <!-- User Frequency Charts -->
-        <div class="chart">
-            <h2>User Frequency by Gender</h2>
-            <div id="genderChart"></div>
-        </div>
+        <div class="dashboard-container">
+            <!-- User Frequency Charts -->
+            <div class="chart">
+                <h2>📊 User Frequency by Gender</h2>
+                <div id="genderChart" class="chart-content"></div>
+            </div>
 
-        <div class="chart">
-            <h2>User Frequency by Age Group</h2>
-            <div id="ageGroupChart"></div>
-        </div>
+            <div class="chart">
+                <h2>📈 User Frequency by Age Group</h2>
+                <div id="ageGroupChart" class="chart-content"></div>
+            </div>
 
-        <!-- Invoice Lookup -->
-        <div class="chart">
-            <h2>Search Invoices by TRN</h2>
-            <input type="text" id="searchTRN" placeholder="Enter TRN (e.g. 123-456-789)" style="padding: 0.5rem; width: 250px; margin-right: 10px;" />
-            <button onclick="searchInvoicesByTRN()" class="btn">Search</button>
-            <div id="invoiceResults" style="margin-top: 1rem;"></div>
+            <!-- Invoice Lookup -->
+            <div class="chart">
+                <h2>🔍 Search Invoices by TRN</h2>
+                <div class="search-container">
+                    <input type="text" id="searchTRN" placeholder="Enter TRN (e.g. 123-456-789)" class="search-input" />
+                    <button onclick="searchInvoicesByTRN()" class="btn btn-primary">Search</button>
+                </div>
+                <div id="invoiceResults" class="invoice-results"></div>
+            </div>
         </div>
     </main>
 
