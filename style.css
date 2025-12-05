@@ -1066,8 +1066,8 @@
 
         /* Additional Dashboard Styles from dashboard.css */
         .frequency-box {
-            width: 300px;
-            padding: 1.8rem
+            width: 280px;
+            padding: 1.6rem
         }
         .chart ul {
             list-style: none;
@@ -1306,3 +1306,4 @@
             transform: translateY(1px);
 
         }
+
