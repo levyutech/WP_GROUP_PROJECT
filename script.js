@@ -376,156 +376,228 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-//Question 2: Product Catalogue
+/* ==============================================================
+   Question 2: Product Catalogue
+   ============================================================== */
 
-/* PRODUCT ARRAY */
+   // Load products on page load
+document.addEventListener('DOMContentLoaded', loadProducts);
 
-//a) Create an array of product objects in JavaScript
+//a) Array of product objects
 const set_Products = [
-    //Bath and Shower Products
-   {
-        name: "Lavender Bath and Body Oil",
-        price:  2500.99,
-        description: "Pure Lavender Body Oil in violet glass with dropper. 100% natural, deeply hydrating, and calming. Perfect for skin, massage, or bath. 1 fl oz.",
-        image: "assets/Bath oil.jpg"
+    // Bath and Shower
+    { 
+        name: "Lavender Bath and Body Oil", 
+        price: 2500.99, 
+        description: "Pure Lavender Body Oil...", 
+        image: "assets/Bath oil.jpg",
+        badge: "New"
     },
-    {
-        name: "Golden Hour Turmeric Scrub",
-        price: 1200.20,
-        description: "Turmeric Glow Body Scrub in glass jar. Natural exfoliating sugar with turmeric, oils, and warm spice. Brightens, smooths, and nourishes skin. 4 oz.",
-        image: "assets/tumeric scrub.jpg"
+    { 
+        name: "Golden Hour Turmeric Scrub", 
+        price: 1200.20, 
+        description: "Turmeric Glow Body Scrub...", 
+        image: "assets/tumeric scrub.jpg",
+        badge: "Best Seller"
     },
-    {
-        name: "Soy Milk & Rice Body Cleanser Set",
-        price: 1000.99,
-        description: "Fresh Soy Milk & Rice Body Set: gentle cleanser (260ml), nourishing lotion (260ml), and soy face cleanser (150ml). Plant-based, soothing, hydrating.",
-        image: "assets/body wash.jpg"
+    { 
+        name: "Soy Milk & Rice Body Cleanser Set", 
+        price: 1000.99, 
+        description: "Fresh Soy Milk & Rice...", 
+        image: "assets/body wash.jpg" 
     },
 
-    //Skincare and Facial Products
-    {
-        name: "Bubble Relaxing Facial Cleansing Oil",
-        price: 1300.55,
-        description: "ZEESEA Bubble Relaxing Cleansing Oil in pump bottle. Foamy, gentle makeup remover with calming marine scent. 185ml.",
-        image: "assets/face.jpg"
+    // Skincare
+    { 
+        name: "Bubble Relaxing Facial Cleansing Oil", 
+        price: 1300.55, description: "ZEESEA Bubble...", 
+        image: "assets/face.jpg",
+        badge: "Best Seller"
     },
-    {
-        name: "Watermelon Glow Sleeping Mask",
-        price: 1200.55,
-        description: "Glow Recipe Watermelon Glow Sleeping Mask in glass jar. Hydrating, radiance-boosting overnight treatment. 80ml.",
-        image: "assets/face mask.jpg"
+    { 
+        name: "Watermelon Glow Sleeping Mask", 
+        price: 1200.55, 
+        description: "Glow Recipe...", 
+        image: "assets/face mask.jpg",
+        badge: "Favourite"
     },
-    {
-        name: "Dr. Pepti Peptide Volume Waterglow Serum",
-        price: 1000.00,
-        description: "Dr. Pepti Peptide Volume Waterglow Serum in pump bottle. Hydrating, plumping, glow-boosting peptides. 50ml.",
+    { 
+        name: "Dr. Pepti Peptide Volume Waterglow Serum", 
+        price: 1000.00, description: "Dr. Pepti...", 
         image: "assets/face serum.jpg"
     },
 
-    //Hand and Foot Care Products
+    // Hand & Foot
+    { 
+        name: "HAAN Hand Cream Collection", 
+        price: 1000.20, 
+        description: "HAAN Hand Cream Trio...", 
+        image: "assets/hand cream collection.jpg" 
+    },
+    { 
+        name: "LondonTown Nature Blend", 
+        price: 850.00, 
+        description: "LondonTown Nature Blend...", 
+        image: "assets/foot scrub.jpg" 
+    },
+    { 
+        name: "Hyda Spa Foot Bath Massager", 
+        price: 14880.95, 
+        description: "Hyda Spa...", 
+        image: "assets/foot bath massager.jpg" 
+    }, 
 
-    {
-        name: "HAAN Hand Cream Collection",
-        price: 1000.20,
-        description: "HAAN Hand Cream Trio: Coco Cooler, Fig Fizz, Carrot Kick. 96% natural, prebiotic-rich, fast-absorbing. 50ml each.",
-        image: "assets/hand cream collection.jpg"
+    // Deodorant
+    { 
+        name: "Respire", 
+        price: 500.00, 
+        description: "Respire Natural...", 
+        image: "assets/deoderant.jpg",
+        badge: "New"
     },
-    {
-        name: "LondonTown Nature Blend",
-        price: 850.00,
-        description: "LondonTown Nature Blend Foot Scrub in tube. Natural exfoliant, invigorating treat for tired feet. 4.2 oz / 120 g.",
-        image: "assets/foot scrub.jpg"
+    { 
+        name: "Disco", 
+        price: 600.25, 
+        description: "Disco Eucalyptus...", 
+        image: "assets/euc. deoderant.jpg" 
     },
-    {
-        name: "Hyda Spa Foot Bath Massager",
-        price: 14880.95,
-        description: "Hyda Spa Foot Bath Massager with digital controls, heated water, and pumice stone. Soothes, relaxes, and rejuvenates tired feet.",
-        image: "../Assets/coconutscrub.jpg"
-    },
-
-    //Deodorant & Antiperspirant Products
-    {
-        name: "Respire",
-        price: 500.00,
-        description: "Respire Natural Deodorant Roll-On. Orange Blossom scent, 100% natural, aluminum-free. 50ml.",
-        image: "assets/deoderant.jpg"
-    },
-    {
-        name: "Disco",
-        price: 600.25,
-        description: "Disco Eucalyptus Deodorant Stick. Natural, aluminum-free, refreshing scent. 2.5 oz (71 g).",
-        image: "assets/euc. deoderant.jpg"
-    },
-    {
-        name: "Modern Botany",
-        price: 540.99,
-        description: "Modern Botany Natural Deodorant Spray. Gentle, plant-based, sensitive-skin friendly. 100ml.",
-        image: "assets/mist deoderant.jpg"
-    },
-
-    //Fragrance Products
-    {
-        name: "Lily of the Valley Perfume Oil",
-        price: 350.00,
-        description: "Sopranolabs Lily of the Valley Perfume Oil. Clean, vegan roll-on in coconut oil. 10ml.",
-        image: "assets/lily of the valley fragrance.jpg"
-    },
-    {
-        name: "Lavender Esscence",
-        price: 400.90,
-        description: "Floral Collection Lavender Eau de Toilette. Fresh, calming lavender scent. 100ml.",
-        image: "assets/lavender fragrance.jpg"
-    },
-    {
-        name: "Haute Sauce - Strawberry Glaze Edible Fragrance",
-        price: 578.99,
-        description: "Haute Sauce Strawberry Glaze Edible Fragrance. Sweet, dessert-inspired scent with natural oils. 50ml.",
-        image: "assets/strawberry scent.jpg"
-    },
-    {
-        name: "Haute Sauce - Vanilla Coco Edible Fragrance",
-        price: 530.99,
-        description: "Haute Sauce Vanilla Coco Edible Fragrance. Creamy vanilla-coconut scent with natural oils. 50ml.",
-        image: "assets/coconut fragrance.jpg"
+    { 
+        name: "Modern Botany", 
+        price: 540.99, 
+        description: "Modern Botany...", 
+        image: "assets/mist deoderant.jpg",
+        badge: "Favourite"
     },
 
+    // Fragrance
+    { 
+        name: "Lily of the Valley Perfume Oil", 
+        price: 350.00, description: "Sopranolabs...", 
+        image: "assets/lily of the valley fragrance.jpg" 
+    },
+    { 
+        name: "Lavender Esscence", 
+        price: 400.90, description: "Floral Collection...", 
+        image: "assets/lavender fragrance.jpg" 
+    },
+    { 
+        name: "Haute Sauce - Strawberry Glaze Edible Fragrance", 
+        price: 578.99, 
+        description: "Haute Sauce...", 
+        image: "assets/strawberry scent.jpg",
+        badge: "Favourite"
+    },
+    { name: "Haute Sauce - Vanilla Coco Edible Fragrance", 
+        price: 530.99, description: "Haute Sauce...", 
+        image: "assets/coconut fragrance.jpg",
+        badge: "New"
+    }
 ];
 
-//Question 2.b) An updated product list must be kept on localStorage, as AllProducts. 
-// Save products to localStorage ONLY if it doesn't exist
-if (!localStorage.getItem("AllProducts")) {
-    localStorage.setItem("AllProducts", JSON.stringify(set_Products));
-}
+// b) Save to localStorage only if not exists
 
-// Load saved product list
+localStorage.setItem("AllProducts", JSON.stringify(set_Products));
+// Always reload fresh
 const products = JSON.parse(localStorage.getItem("AllProducts"));
 
-/* DYNAMIC PRODUCT DISPLAY */
 
+
+/* DYNAMIC PRODUCT DISPLAY */
 function loadProducts() {
-    const container = document.getElementById("productList");
+    const container = document.getElementById('productList');
     if (!container) return;
 
-    container.innerHTML = "";
+    // ← PREVENT DUPLICATE CALLS
+    if (container.dataset.loaded === 'true') return;
+    container.dataset.loaded = 'true';
 
-    products.forEach(product => {
-        container.innerHTML += `
-            <div class="product">
-                <img src="${product.image}" alt="${product.name}">
-                <h3>${product.name}</h3>
-                <p>${product.description}</p>
-                <p>US $${product.price.toFixed(2)}</p>
-                
-                <button class="add-to-cart" 
-                        data-name="${product.name}" 
-                        data-price="${product.price}">
-                    Add to Cart
-                </button>
+    container.innerHTML = ''; // Clear any old content
+
+    if (!products || products.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color:#999;">No products available.</p>';
+        return;
+    }
+
+    products.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            <div class="product-image-wrapper">
+                <img src="${p.image}" alt="${p.name}" onerror="this.src='assets/placeholder.jpg'">
+                ${p.badge ? `<span class="featured-badge">${p.badge}</span>` : ''}
             </div>
+            <h3>${p.name}</h3>
+            <p class="product-desc">${p.description}</p>
+            <p class="price">US $${p.price.toFixed(2)}</p>
+            <button class="add-to-cart" data-name="${p.name}" data-price="${p.price}">
+                Add to Cart
+            </button>
         `;
+        container.appendChild(card);
+    });
+
+    /* =============================================
+   2. DISPLAY PRODUCTS FUNCTION
+   ============================================= */
+function displayProducts() {
+    const container = document.getElementById('productList');
+    if (!container) return;
+
+    // Clear any existing content
+    container.innerHTML = '';
+
+    // Loop through each product
+    set_Products.forEach(product => {
+        // Create card element
+        const card = document.createElement('div');
+        card.className = 'product-card';
+
+        // Build HTML for one product
+        card.innerHTML = `
+            <div class="product-image-wrapper">
+                <img src="${product.image}" alt="${product.name}" onerror="this.src='assets/placeholder.jpg'">
+                ${product.badge ? `<span class="featured-badge">${product.badge}</span>` : ''}
+            </div>
+            <h3>${product.name}</h3>
+            <p class="product-desc">${product.description}</p>
+            <p class="price">US $${product.price.toFixed(2)}</p>
+            <button class="add-to-cart" 
+                    data-name="${product.name}" 
+                    data-price="${product.price}">
+                Add to Cart
+            </button>
+        `;
+
+        // Add card to container
+        container.appendChild(card);
+    });
+
+    // Attach "Add to Cart" functionality
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const name = btn.dataset.name;
+            const price = parseFloat(btn.dataset.price);
+            addToCart(name, price);
+        });
     });
 }
 
+/* =============================================
+   3. RUN WHEN PAGE LOADS
+   ============================================= */
+document.addEventListener('DOMContentLoaded', () => {
+    displayProducts();
+    updateCartCounter(); // if you have cart counter
+});
+    // Re-attach event listeners
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.onclick = () => {
+            const name = btn.dataset.name;
+            const price = parseFloat(btn.dataset.price);
+            addToCart(name, price);
+        };
+    });
+}
 //Question 3: Cart Functionality
 
 //Cart Page
