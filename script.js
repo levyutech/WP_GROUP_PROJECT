@@ -381,19 +381,19 @@ const set_Products = [
    {
         name: "Lavender Bath and Body Oil",
         price:  2500.99,
-        description: "Pure Lavender Body Oil in violet glass with dropper. 100% natural, deeply hydrating, and calming. Perfect for skin, massage, or bath. 1 fl oz.",
+        description: "Unwind with our harmonious blend of calming lavender and eucalyptus, transforming your bath into a tranquil, dew-kissed retreat.",
         image: "assets/Bath oil.jpg"
     },
     {
         name: "Golden Hour Turmeric Scrub",
         price: 1200.20,
-        description: "Turmeric Glow Body Scrub in glass jar. Natural exfoliating sugar with turmeric, oils, and warm spice. Brightens, smooths, and nourishes skin. 4 oz.",
+        description: "Our potent, natural blend gently revitalizes and exfoliates softly. Turmeric's brightening properties help even skin tone, while creamy oils moisturize, for a healthy radiant glow.",
         image: "assets/tumeric scrub.jpg"
     },
     {
         name: "Soy Milk & Rice Body Cleanser Set",
         price: 1000.99,
-        description: "Fresh Soy Milk & Rice Body Set: gentle cleanser (260ml), nourishing lotion (260ml), and soy face cleanser (150ml). Plant-based, soothing, hydrating.",
+        description: "A gentle cleanser enriched with soothing plant-based milks, cerella rice, and linseed. This creamy formula nourishes the skin while it cleanses, leaving it feeling soft and comfortably refreshed.",
         image: "assets/body wash.jpg"
     },
 
@@ -401,19 +401,19 @@ const set_Products = [
     {
         name: "Bubble Relaxing Facial Cleansing Oil",
         price: 1300.55,
-        description: "ZEESEA Bubble Relaxing Cleansing Oil in pump bottle. Foamy, gentle makeup remover with calming marine scent. 185ml.",
+        description: "Watch your routine become a moment of calm. This foaming cleansing facial oil effortlessly dissolves the day's buildup. It cleanses deeply without stripping the skin, leaving behind only a pure, silky relaxation.",
         image: "assets/face.jpg"
     },
     {
         name: "Watermelon Glow Sleeping Mask",
         price: 1200.55,
-        description: "Glow Recipe Watermelon Glow Sleeping Mask in glass jar. Hydrating, radiance-boosting overnight treatment. 80ml.",
+        description: "This essential hydrating mask is infused with watermelon extract and soothing enzymes to gently exfoliate, replenish moisture, and reveal a dewy, glowing complexion by morning.",
         image: "assets/face mask.jpg"
     },
     {
         name: "Dr. Pepti Peptide Volume Waterglow Serum",
         price: 1000.00,
-        description: "Dr. Pepti Peptide Volume Waterglow Serum in pump bottle. Hydrating, plumping, glow-boosting peptides. 50ml.",
+        description: "See a plumper, dewy glow. Our powerful peptide complex firms skin while hyaluronic acid delivers intense hydration. Brightening niacinamide evens tone for instantly radiant, lit-from-within skin.",
         image: "assets/face serum.jpg"
     },
 
@@ -422,19 +422,19 @@ const set_Products = [
     {
         name: "HAAN Hand Cream Collection",
         price: 1000.20,
-        description: "HAAN Hand Cream Trio: Coco Cooler, Fig Fizz, Carrot Kick. 96% natural, prebiotic-rich, fast-absorbing. 50ml each.",
+        description: "Nourish your hands with 95% natural formulas. Enriched with a prebiotic complex, this moisturising textures absorb instantly to strengthen your skin's barrier and lock in moisture.",
         image: "assets/hand cream collection.jpg"
     },
     {
         name: "LondonTown Nature Blend",
         price: 850.00,
-        description: "LondonTown Nature Blend Foot Scrub in tube. Natural exfoliant, invigorating treat for tired feet. 4.2 oz / 120 g.",
+        description: "Our foot scrub combines aloe vera, peppermint and green tea ingredients to create an effective scrub that leaves your feet feeling silky smooth and renewed.",
         image: "assets/foot scrub.jpg"
     },
     {
         name: "Hyda Spa Foot Bath Massager",
         price: 14880.95,
-        description: "Hyda Spa Foot Bath Massager with digital controls, heated water, and pumice stone. Soothes, relaxes, and rejuvenates tired feet.",
+        description: "The Hyda Spa provides heated bubbles, vibration and roller massagers. The Liquid Crystal Display puts total relaxation at your fingertips, leaving your feet feeling refreshed and renewed.",
         image: "assets/foot bath massager.jpg"
     },
 
@@ -442,19 +442,19 @@ const set_Products = [
     {
         name: "Respire",
         price: 500.00,
-        description: "Respire Natural Deodorant Roll-On. Orange Blossom scent, 100% natural, aluminum-free. 50ml.",
+        description: "Make your body a priority with our ultimate naturally trio of orange, aloe vera, and rosemary. Orange provides a fresh scent while fighting bacteria. Aloe vera calms the skin, and rosemary offers natural protection to keep you feeling fresh and confident all day.",
         image: "assets/deoderant.jpg"
     },
     {
         name: "Disco",
         price: 600.25,
-        description: "Disco Eucalyptus Deodorant Stick. Natural, aluminum-free, refreshing scent. 2.5 oz (71 g).",
+        description: "Meet a fresh, confident you. This natural deodorant combines the crisp, cleansing power of eucalyptus with odor-fighting minerals to keep you feeling refreshed and protected all day long.",
         image: "assets/euc. deoderant.jpg"
     },
     {
         name: "Modern Botany",
         price: 540.99,
-        description: "Modern Botany Natural Deodorant Spray. Gentle, plant-based, sensitive-skin friendly. 100ml.",
+        description: "Experience all-day freshness with our dermatologist-tested product. Designed especially for sensitive skin, it provides effective, natural odor protection without compromise.",
         image: "assets/mist deoderant.jpg"
     },
 
@@ -462,37 +462,35 @@ const set_Products = [
     {
         name: "Lily of the Valley Perfume Oil",
         price: 350.00,
-        description: "Sopranolabs Lily of the Valley Perfume Oil. Clean, vegan roll-on in coconut oil. 10ml.",
+        description: "Let the uplifting scent of lily ease your mind and lift your spirits throughout the day. The blend of pure essential oils like coconut and peppermint ensures the fragrance long-lasting scent naturally mixes with your skin's chemistry. This creates a unique personal aroma that feels like a fresh start everyday.",
         image: "assets/lily of the valley fragrance.jpg"
     },
     {
         name: "Lavender Esscence",
         price: 400.90,
-        description: "Floral Collection Lavender Eau de Toilette. Fresh, calming lavender scent. 100ml.",
+        description: "Discover your favourite lavender scent. Lavender essential oil melts away daily stress while rose uplifts your mood, creating a balanced calm. A hint of vanilla and nourishing carrier oils provide lasting comfort, leaving your skin scented and your mind at ease.",
         image: "assets/lavender fragrance.jpg"
     },
     {
         name: "Haute Sauce - Strawberry Glaze Edible Fragrance",
         price: 578.99,
-        description: "Haute Sauce Strawberry Glaze Edible Fragrance. Sweet, dessert-inspired scent with natural oils. 50ml.",
+        description: "Indulge in the sweet allure of sun-ripened strawberries with this deliciously fragrance. This formula lets you taste your scent as you get ready for your day, leaving a tempting glaze of strawberry sweetness on your skin and lips.",
         image: "assets/strawberry scent.jpg"
     },
     {
         name: "Haute Sauce - Vanilla Coco Edible Fragrance",
         price: 530.99,
-        description: "Haute Sauce Vanilla Coco Edible Fragrance. Creamy vanilla-coconut scent with natural oils. 50ml.",
+        description: "Surround yourself with the creamy comfort of coconut and warm, sweet vanilla. This edible fragrance lets you indulge in a tropical escape, leaving a deliciously smooth, dessert-like scent on your skin.",
         image: "assets/coconut fragrance.jpg"
     },
 
 ];
 
 //Question 2.b) An updated product list must be kept on localStorage, as AllProducts. 
-// Save products to localStorage ONLY if it doesn't exist
-if (!localStorage.getItem("AllProducts")) {
-    localStorage.setItem("AllProducts", JSON.stringify(set_Products));
-}
+// Always update localStorage with the latest product list to ensure descriptions match FProducts.html
+localStorage.setItem("AllProducts", JSON.stringify(set_Products));
 
-// Load saved product list
+// Load saved product list (now always using the latest from set_Products)
 const products = JSON.parse(localStorage.getItem("AllProducts")) || [];
 
 /* DYNAMIC PRODUCT DISPLAY */
@@ -1101,8 +1099,8 @@ function ShowUserFrequency() {
     let genderHTML = '';
     const maxGenderCount = Math.max(...Object.values(genderCount), 1);
     for (const [label, count] of Object.entries(genderCount)) {
-        const percentage = maxGenderCount > 0 ? (count / maxGenderCount) * 100 : 0;
-        genderHTML += `<div class="bar" style="width: ${Math.max(20, percentage)}%;"><span class="bar-label">${label}:</span> <span>${count}</span></div>`;
+        const percentage = maxGenderCount > 0 ? Math.max(30, (count / maxGenderCount) * 70 + 30) : 30;
+        genderHTML += `<div class="bar" style="width: ${percentage}%;"><span class="bar-label">${label}:</span><span>${count}</span></div>`;
     }
     genderChartEl.innerHTML = genderHTML;
 
@@ -1110,8 +1108,8 @@ function ShowUserFrequency() {
     let ageHTML = '';
     const maxAgeCount = Math.max(...Object.values(ageGroups), 1);
     for (const [label, count] of Object.entries(ageGroups)) {
-        const percentage = maxAgeCount > 0 ? (count / maxAgeCount) * 100 : 0;
-        ageHTML += `<div class="bar" style="width: ${Math.max(20, percentage)}%;"><span class="bar-label">${label}:</span> <span>${count}</span></div>`;
+        const percentage = maxAgeCount > 0 ? Math.max(30, (count / maxAgeCount) * 70 + 30) : 30;
+        ageHTML += `<div class="bar" style="width: ${percentage}%;"><span class="bar-label">${label}:</span><span>${count}</span></div>`;
     }
     ageGroupChartEl.innerHTML = ageHTML;
 }
