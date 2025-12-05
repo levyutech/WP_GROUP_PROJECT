@@ -5,12 +5,9 @@
 */
 
 // Question 1: User Authentification
-
-// =========================
 // User Authentication & Registration (LocalStorage)
-// =========================
-
 // Get the RegistrationData array from localStorage (or empty array if none)
+
 function getRegistrationData() {
     // Parse the JSON string from localStorage; if null, use empty array
     return JSON.parse(localStorage.getItem('RegistrationData')) || [];
@@ -21,7 +18,7 @@ function saveRegistrationData(data) {
     localStorage.setItem('RegistrationData', JSON.stringify(data));
 }
 
-// Calculate age from a date-of-birth string (YYYY-MM-DD)
+// Calculate age from the date of birth string (YYYY-MM-DD)
 function calculateAge(dobString) {
     const today = new Date();
     const dob = new Date(dobString);
@@ -29,7 +26,7 @@ function calculateAge(dobString) {
     let age = today.getFullYear() - dob.getFullYear();
     const m = today.getMonth() - dob.getMonth();
 
-    // Adjust age if birthday has not occurred yet this year
+    // Adjust age if birthday has not occurred yet
     if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
         age--;
     }
@@ -37,15 +34,13 @@ function calculateAge(dobString) {
     return age;
 }
 
-// Simple TRN format check: 000-000-000
+//TRN format: 000-000-000
 function isValidTrnFormat(trn) {
     const trnRegex = /^\d{3}-\d{3}-\d{3}$/;
     return trnRegex.test(trn);
 }
 
-// =========================
 // Registration Form Validation & Storage
-// =========================
 
 function validateRegistrationForm() {
     // Get field values from the form
@@ -72,7 +67,7 @@ function validateRegistrationForm() {
     document.getElementById('regPasswordError').textContent = '';
     document.getElementById('confirmPasswordError').textContent = '';
 
-    // --- Required field checks ---
+    // Required field checks
 
     if (!firstName) {
         document.getElementById('firstNameError').textContent = 'First name is required';
@@ -152,12 +147,12 @@ function validateRegistrationForm() {
         }
     }
 
-    // If any validation fails, stop here
+    // If validation fails, stop here
     if (!validResponse) {
         return false;
     }
 
-    // --- Build registration record object to store in localStorage ---
+    //Build registration record object to store in localStorage
     const registrationData = getRegistrationData();
 
     const newUser = {
@@ -168,7 +163,7 @@ function validateRegistrationForm() {
        phone: phone,
         email: email,
         trn: trn,                       // used as username for login
-        password: password,             // NOTE: stored in plain text for this assignment
+        password: password,             
         dateOfRegistration: new Date().toISOString(), // current date/time
         cart: {},                       // empty cart object
         invoices: []                    // empty invoices array
@@ -187,9 +182,9 @@ function validateRegistrationForm() {
     return true;
 }
 
-// =========================
+
 // Login Form Validation (TRN + Password)
-// =========================
+
 
 // Track login attempts using localStorage so it persists
 function getLoginAttempts() {
@@ -262,9 +257,9 @@ function validateLoginForm() {
     }
 }
 
-// =========================
+
 // Reset Password (via hyperlink on login page)
-// =========================
+
 
 function resetPasswordFlow() {
     // Ask user for their TRN
@@ -308,9 +303,9 @@ function resetPasswordFlow() {
     alert('Your password has been updated successfully. You can now log in with your new password.');
 }
 
-// =========================
+
 // Attach auth event listeners
-// =========================
+
 
 document.addEventListener('DOMContentLoaded', function () {
     // Login form
@@ -376,228 +371,170 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-/* ==============================================================
-   Question 2: Product Catalogue
-   ============================================================== */
+//Question 2: Product Catalogue
 
-   // Load products on page load
-document.addEventListener('DOMContentLoaded', loadProducts);
+/* PRODUCT ARRAY */
 
-//a) Array of product objects
+//a) Create an array of product objects in JavaScript
 const set_Products = [
-    // Bath and Shower
-    { 
-        name: "Lavender Bath and Body Oil", 
-        price: 2500.99, 
-        description: "Pure Lavender Body Oil...", 
-        image: "assets/Bath oil.jpg",
-        badge: "New"
+    //Bath and Shower Products
+   {
+        name: "Lavender Bath and Body Oil",
+        price:  2500.99,
+        description: "Pure Lavender Body Oil in violet glass with dropper. 100% natural, deeply hydrating, and calming. Perfect for skin, massage, or bath. 1 fl oz.",
+        image: "assets/Bath oil.jpg"
     },
-    { 
-        name: "Golden Hour Turmeric Scrub", 
-        price: 1200.20, 
-        description: "Turmeric Glow Body Scrub...", 
-        image: "assets/tumeric scrub.jpg",
-        badge: "Best Seller"
+    {
+        name: "Golden Hour Turmeric Scrub",
+        price: 1200.20,
+        description: "Turmeric Glow Body Scrub in glass jar. Natural exfoliating sugar with turmeric, oils, and warm spice. Brightens, smooths, and nourishes skin. 4 oz.",
+        image: "assets/tumeric scrub.jpg"
     },
-    { 
-        name: "Soy Milk & Rice Body Cleanser Set", 
-        price: 1000.99, 
-        description: "Fresh Soy Milk & Rice...", 
-        image: "assets/body wash.jpg" 
+    {
+        name: "Soy Milk & Rice Body Cleanser Set",
+        price: 1000.99,
+        description: "Fresh Soy Milk & Rice Body Set: gentle cleanser (260ml), nourishing lotion (260ml), and soy face cleanser (150ml). Plant-based, soothing, hydrating.",
+        image: "assets/body wash.jpg"
     },
 
-    // Skincare
-    { 
-        name: "Bubble Relaxing Facial Cleansing Oil", 
-        price: 1300.55, description: "ZEESEA Bubble...", 
-        image: "assets/face.jpg",
-        badge: "Best Seller"
+    //Skincare and Facial Products
+    {
+        name: "Bubble Relaxing Facial Cleansing Oil",
+        price: 1300.55,
+        description: "ZEESEA Bubble Relaxing Cleansing Oil in pump bottle. Foamy, gentle makeup remover with calming marine scent. 185ml.",
+        image: "assets/face.jpg"
     },
-    { 
-        name: "Watermelon Glow Sleeping Mask", 
-        price: 1200.55, 
-        description: "Glow Recipe...", 
-        image: "assets/face mask.jpg",
-        badge: "Favourite"
+    {
+        name: "Watermelon Glow Sleeping Mask",
+        price: 1200.55,
+        description: "Glow Recipe Watermelon Glow Sleeping Mask in glass jar. Hydrating, radiance-boosting overnight treatment. 80ml.",
+        image: "assets/face mask.jpg"
     },
-    { 
-        name: "Dr. Pepti Peptide Volume Waterglow Serum", 
-        price: 1000.00, description: "Dr. Pepti...", 
+    {
+        name: "Dr. Pepti Peptide Volume Waterglow Serum",
+        price: 1000.00,
+        description: "Dr. Pepti Peptide Volume Waterglow Serum in pump bottle. Hydrating, plumping, glow-boosting peptides. 50ml.",
         image: "assets/face serum.jpg"
     },
 
-    // Hand & Foot
-    { 
-        name: "HAAN Hand Cream Collection", 
-        price: 1000.20, 
-        description: "HAAN Hand Cream Trio...", 
-        image: "assets/hand cream collection.jpg" 
-    },
-    { 
-        name: "LondonTown Nature Blend", 
-        price: 850.00, 
-        description: "LondonTown Nature Blend...", 
-        image: "assets/foot scrub.jpg" 
-    },
-    { 
-        name: "Hyda Spa Foot Bath Massager", 
-        price: 14880.95, 
-        description: "Hyda Spa...", 
-        image: "assets/foot bath massager.jpg" 
-    }, 
+    //Hand and Foot Care Products
 
-    // Deodorant
-    { 
-        name: "Respire", 
-        price: 500.00, 
-        description: "Respire Natural...", 
-        image: "assets/deoderant.jpg",
-        badge: "New"
+    {
+        name: "HAAN Hand Cream Collection",
+        price: 1000.20,
+        description: "HAAN Hand Cream Trio: Coco Cooler, Fig Fizz, Carrot Kick. 96% natural, prebiotic-rich, fast-absorbing. 50ml each.",
+        image: "assets/hand cream collection.jpg"
     },
-    { 
-        name: "Disco", 
-        price: 600.25, 
-        description: "Disco Eucalyptus...", 
-        image: "assets/euc. deoderant.jpg" 
+    {
+        name: "LondonTown Nature Blend",
+        price: 850.00,
+        description: "LondonTown Nature Blend Foot Scrub in tube. Natural exfoliant, invigorating treat for tired feet. 4.2 oz / 120 g.",
+        image: "assets/foot scrub.jpg"
     },
-    { 
-        name: "Modern Botany", 
-        price: 540.99, 
-        description: "Modern Botany...", 
-        image: "assets/mist deoderant.jpg",
-        badge: "Favourite"
+    {
+        name: "Hyda Spa Foot Bath Massager",
+        price: 14880.95,
+        description: "Hyda Spa Foot Bath Massager with digital controls, heated water, and pumice stone. Soothes, relaxes, and rejuvenates tired feet.",
+        image: "assets/foot bath massager.jpg"
     },
 
-    // Fragrance
-    { 
-        name: "Lily of the Valley Perfume Oil", 
-        price: 350.00, description: "Sopranolabs...", 
-        image: "assets/lily of the valley fragrance.jpg" 
+    //Deodorant & Antiperspirant Products
+    {
+        name: "Respire",
+        price: 500.00,
+        description: "Respire Natural Deodorant Roll-On. Orange Blossom scent, 100% natural, aluminum-free. 50ml.",
+        image: "assets/deoderant.jpg"
     },
-    { 
-        name: "Lavender Esscence", 
-        price: 400.90, description: "Floral Collection...", 
-        image: "assets/lavender fragrance.jpg" 
+    {
+        name: "Disco",
+        price: 600.25,
+        description: "Disco Eucalyptus Deodorant Stick. Natural, aluminum-free, refreshing scent. 2.5 oz (71 g).",
+        image: "assets/euc. deoderant.jpg"
     },
-    { 
-        name: "Haute Sauce - Strawberry Glaze Edible Fragrance", 
-        price: 578.99, 
-        description: "Haute Sauce...", 
-        image: "assets/strawberry scent.jpg",
-        badge: "Favourite"
+    {
+        name: "Modern Botany",
+        price: 540.99,
+        description: "Modern Botany Natural Deodorant Spray. Gentle, plant-based, sensitive-skin friendly. 100ml.",
+        image: "assets/mist deoderant.jpg"
     },
-    { name: "Haute Sauce - Vanilla Coco Edible Fragrance", 
-        price: 530.99, description: "Haute Sauce...", 
-        image: "assets/coconut fragrance.jpg",
-        badge: "New"
-    }
+
+    //Fragrance Products
+    {
+        name: "Lily of the Valley Perfume Oil",
+        price: 350.00,
+        description: "Sopranolabs Lily of the Valley Perfume Oil. Clean, vegan roll-on in coconut oil. 10ml.",
+        image: "assets/lily of the valley fragrance.jpg"
+    },
+    {
+        name: "Lavender Esscence",
+        price: 400.90,
+        description: "Floral Collection Lavender Eau de Toilette. Fresh, calming lavender scent. 100ml.",
+        image: "assets/lavender fragrance.jpg"
+    },
+    {
+        name: "Haute Sauce - Strawberry Glaze Edible Fragrance",
+        price: 578.99,
+        description: "Haute Sauce Strawberry Glaze Edible Fragrance. Sweet, dessert-inspired scent with natural oils. 50ml.",
+        image: "assets/strawberry scent.jpg"
+    },
+    {
+        name: "Haute Sauce - Vanilla Coco Edible Fragrance",
+        price: 530.99,
+        description: "Haute Sauce Vanilla Coco Edible Fragrance. Creamy vanilla-coconut scent with natural oils. 50ml.",
+        image: "assets/coconut fragrance.jpg"
+    },
+
 ];
 
-// b) Save to localStorage only if not exists
+//Question 2.b) An updated product list must be kept on localStorage, as AllProducts. 
+// Save products to localStorage ONLY if it doesn't exist
+if (!localStorage.getItem("AllProducts")) {
+    localStorage.setItem("AllProducts", JSON.stringify(set_Products));
+}
 
-localStorage.setItem("AllProducts", JSON.stringify(set_Products));
-// Always reload fresh
-const products = JSON.parse(localStorage.getItem("AllProducts"));
-
-
+// Load saved product list
+const products = JSON.parse(localStorage.getItem("AllProducts")) || [];
 
 /* DYNAMIC PRODUCT DISPLAY */
+
 function loadProducts() {
-    const container = document.getElementById('productList');
+    const container = document.getElementById("productList");
     if (!container) return;
 
-    // ← PREVENT DUPLICATE CALLS
-    if (container.dataset.loaded === 'true') return;
-    container.dataset.loaded = 'true';
-
-    container.innerHTML = ''; // Clear any old content
-
-    if (!products || products.length === 0) {
-        container.innerHTML = '<p style="text-align:center; color:#999;">No products available.</p>';
+    // Ensure products array exists
+    const productsToDisplay = products && products.length > 0 ? products : [];
+    
+    if (productsToDisplay.length === 0) {
+        container.innerHTML = '<p style="text-align: center; padding: 2rem;">No products available. Please refresh the page.</p>';
         return;
     }
 
-    products.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-            <div class="product-image-wrapper">
-                <img src="${p.image}" alt="${p.name}" onerror="this.src='assets/placeholder.jpg'">
-                ${p.badge ? `<span class="featured-badge">${p.badge}</span>` : ''}
+    container.innerHTML = "";
+
+    productsToDisplay.forEach((product, index) => {
+        container.innerHTML += `
+            <div class="product">
+                <img src="${product.image}" alt="${product.name}" onerror="this.src='assets/Lily Logo.png'; this.alt='Image not found';">
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <p class="product-price">US $${product.price.toFixed(2)}</p>
+                
+                <button class="add-to-cart" 
+                        onclick="addToCart(${index})"
+                        data-name="${product.name}" 
+                        data-price="${product.price}">
+                    Add to Cart
+                </button>
             </div>
-            <h3>${p.name}</h3>
-            <p class="product-desc">${p.description}</p>
-            <p class="price">US $${p.price.toFixed(2)}</p>
-            <button class="add-to-cart" data-name="${p.name}" data-price="${p.price}">
-                Add to Cart
-            </button>
         `;
-        container.appendChild(card);
-    });
-
-    /* =============================================
-   2. DISPLAY PRODUCTS FUNCTION
-   ============================================= */
-function displayProducts() {
-    const container = document.getElementById('productList');
-    if (!container) return;
-
-    // Clear any existing content
-    container.innerHTML = '';
-
-    // Loop through each product
-    set_Products.forEach(product => {
-        // Create card element
-        const card = document.createElement('div');
-        card.className = 'product-card';
-
-        // Build HTML for one product
-        card.innerHTML = `
-            <div class="product-image-wrapper">
-                <img src="${product.image}" alt="${product.name}" onerror="this.src='assets/placeholder.jpg'">
-                ${product.badge ? `<span class="featured-badge">${product.badge}</span>` : ''}
-            </div>
-            <h3>${product.name}</h3>
-            <p class="product-desc">${product.description}</p>
-            <p class="price">US $${product.price.toFixed(2)}</p>
-            <button class="add-to-cart" 
-                    data-name="${product.name}" 
-                    data-price="${product.price}">
-                Add to Cart
-            </button>
-        `;
-
-        // Add card to container
-        container.appendChild(card);
-    });
-
-    // Attach "Add to Cart" functionality
-    document.querySelectorAll('.add-to-cart').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const name = btn.dataset.name;
-            const price = parseFloat(btn.dataset.price);
-            addToCart(name, price);
-        });
     });
 }
 
-/* =============================================
-   3. RUN WHEN PAGE LOADS
-   ============================================= */
-document.addEventListener('DOMContentLoaded', () => {
-    displayProducts();
-    updateCartCounter(); // if you have cart counter
+// Load products when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    loadProducts();
 });
-    // Re-attach event listeners
-    document.querySelectorAll('.add-to-cart').forEach(btn => {
-        btn.onclick = () => {
-            const name = btn.dataset.name;
-            const price = parseFloat(btn.dataset.price);
-            addToCart(name, price);
-        };
-    });
-}
+
 //Question 3: Cart Functionality
 
 //Cart Page
@@ -801,6 +738,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const totals = calculateCartTotal();
         const paymentInput = document.getElementById('paymentAmount');
         if (paymentInput) paymentInput.value = totals.total.toFixed(2);
+
+        // Auto-fill TRN if user is logged in
+        const currentUserTRN = localStorage.getItem('CurrentUserTRN');
+        const trnInput = document.getElementById('checkoutTRN');
+        if (trnInput && currentUserTRN) {
+            trnInput.value = currentUserTRN;
+        }
     }
 });
 
@@ -819,6 +763,7 @@ function confirmCheckout(e) {
     const firstName = document.getElementById('checkoutfirstName').value.trim(); // Trim whitespace
     const lastName  = document.getElementById('checkoutlastName').value.trim();
     const email     = document.getElementById('checkoutEmail').value.trim();
+    const trn      = document.getElementById('checkoutTRN') ? document.getElementById('checkoutTRN').value.trim() : '';
     const address   = document.getElementById('checkoutAddress').value.trim();
     const city      = document.getElementById('checkoutCity').value.trim();
     const zipCode   = document.getElementById('checkoutZipCode').value.trim();
@@ -830,6 +775,15 @@ function confirmCheckout(e) {
     if (!email || !email.includes('@') || !email.includes('.')) {
         document.getElementById('checkoutEmailError').textContent = 'Please enter a valid email'; valid = false;
     }
+    if (!trn) {
+        if (document.getElementById('checkoutTRNError')) {
+            document.getElementById('checkoutTRNError').textContent = 'TRN is required'; valid = false;
+        }
+    } else if (!isValidTrnFormat(trn)) {
+        if (document.getElementById('checkoutTRNError')) {
+            document.getElementById('checkoutTRNError').textContent = 'TRN must be in the format 000-000-000'; valid = false;
+        }
+    }
     if (!address)   { document.getElementById('checkoutAddressError').textContent = 'Address is required'; valid = false; }
     if (!city)      { document.getElementById('checkoutCityError').textContent = 'City is required'; valid = false; }
     if (!zipCode)   { document.getElementById('checkoutZipCodeError').textContent = 'Zip code is required'; valid = false; }
@@ -837,8 +791,9 @@ function confirmCheckout(e) {
         document.getElementById('paymentAmountError').textContent = 'Enter a valid payment amount'; valid = false;
     }
 
-    // Cart empty check
-    if (Object.keys(cart).length === 0) { // If cart is empty
+    // Cart empty check - read from localStorage to ensure we have latest data
+    const currentCart = JSON.parse(localStorage.getItem('spaCart')) || {};
+    if (Object.keys(currentCart).length === 0) { // If cart is empty
         alert('Your cart is empty!'); // Alert message
         return;
     }
@@ -853,9 +808,35 @@ if (payment < total - 0.01) {   // allows being 1 cent short due to rounding
 
     // Successful checkout
     if (valid) {
-        document.getElementById('orderSuccess').style.display = 'block'; // Show success message only when order is successful
-        clearCart(); // Clear cart after successful checkout
-        setTimeout(() => window.location.href = 'index.html', 30000); // Redirect after 30 seconds
+        // Get TRN - try from form, or from CurrentUserTRN in localStorage
+        const userTRN = trn || localStorage.getItem('CurrentUserTRN') || '';
+        
+        if (!userTRN) {
+            alert('TRN is required for checkout. Please log in or enter your TRN.');
+            return;
+        }
+
+        // Generate invoice
+        const checkoutData = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            trn: userTRN,
+            address: address,
+            city: city,
+            zipCode: zipCode
+        };
+
+        const invoice = generateInvoice(checkoutData);
+        
+        if (invoice) {
+            document.getElementById('orderSuccess').style.display = 'block'; // Show success message only when order is successful
+            clearCart(); // Clear cart after successful checkout
+            // Redirect to invoice page after 2 seconds
+            setTimeout(() => window.location.href = 'invoice.html', 2000);
+        } else {
+            alert('Error generating invoice. Please try again.');
+        }
     }
 }
 
@@ -1034,15 +1015,25 @@ function displayInvoice() {
     container.innerHTML = html;
 }
 
-// Auto-run on invoice.html
-if (document.getElementById('invoice-content')) {
-    displayInvoice();
-}
+// Auto-run on invoice.html when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('invoice-content')) {
+        displayInvoice();
+    }
+});
 
 //Additional Functionality
 
 // 6.a: Show User Frequency (Gender & Age Group)
 function ShowUserFrequency() {
+    const genderChartEl = document.getElementById('genderChart');
+    const ageGroupChartEl = document.getElementById('ageGroupChart');
+    
+    // Only run if on dashboard page
+    if (!genderChartEl || !ageGroupChartEl) {
+        return;
+    }
+
     const registrations = JSON.parse(localStorage.getItem('RegistrationData')) || [];
 
     const genderCount = { Male: 0, Female: 0, Other: 0 };
@@ -1071,19 +1062,21 @@ function ShowUserFrequency() {
 
     // Render Gender Chart
     let genderHTML = '';
+    const maxGenderCount = Math.max(...Object.values(genderCount), 1);
     for (const [label, count] of Object.entries(genderCount)) {
-        const width = count > 0 ? Math.max(50, count * 40) : 50;
-        genderHTML += `<div class="bar" style="width: ${width}px;"><span class="bar-label">${label}:</span> ${count}</div>`;
+        const percentage = maxGenderCount > 0 ? (count / maxGenderCount) * 100 : 0;
+        genderHTML += `<div class="bar" style="width: ${Math.max(20, percentage)}%;"><span class="bar-label">${label}:</span> <span>${count}</span></div>`;
     }
-    document.getElementById('genderChart').innerHTML = genderHTML;
+    genderChartEl.innerHTML = genderHTML;
 
     // Render Age Group Chart
     let ageHTML = '';
+    const maxAgeCount = Math.max(...Object.values(ageGroups), 1);
     for (const [label, count] of Object.entries(ageGroups)) {
-        const width = count > 0 ? Math.max(50, count * 40) : 50;
-        ageHTML += `<div class="bar" style="width: ${width}px;"><span class="bar-label">${label}:</span> ${count}</div>`;
+        const percentage = maxAgeCount > 0 ? (count / maxAgeCount) * 100 : 0;
+        ageHTML += `<div class="bar" style="width: ${Math.max(20, percentage)}%;"><span class="bar-label">${label}:</span> <span>${count}</span></div>`;
     }
-    document.getElementById('ageGroupChart').innerHTML = ageHTML;
+    ageGroupChartEl.innerHTML = ageHTML;
 }
 
 // 6.b: Log all invoices to console
