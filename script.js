@@ -667,10 +667,12 @@ function updateCartCounter() {
 
 // Calculate Cart Totals
 function calculateCartTotal() {
+    // Read cart from localStorage to ensure we have the latest data
+    const currentCart = JSON.parse(localStorage.getItem('spaCart')) || {};
     let subtotal = 0;
     
-    for (const productId in cart) {
-        const item = cart[productId];
+    for (const productId in currentCart) {
+        const item = currentCart[productId];
         subtotal += item.product.price * item.quantity;
     }
     
@@ -751,6 +753,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Confirm Checkout
 function confirmCheckout(e) {
     e.preventDefault();
+    console.log('Confirm checkout called');
 
     // Clear all previous errors
     document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
@@ -768,6 +771,8 @@ function confirmCheckout(e) {
     const city      = document.getElementById('checkoutCity').value.trim();
     const zipCode   = document.getElementById('checkoutZipCode').value.trim();
     const payment = Number(document.getElementById('paymentAmount').value) || 0;
+    
+    console.log('Form values:', { firstName, lastName, email, trn, address, city, zipCode, payment });
 
     // Validate inputs
     if (!firstName) { document.getElementById('checkoutfirstNameError').textContent = 'First name is required'; valid = false; }
@@ -808,6 +813,8 @@ if (payment < total - 0.01) {   // allows being 1 cent short due to rounding
 
     // Successful checkout
     if (valid) {
+        console.log('Validation passed, proceeding with checkout');
+        
         // Get TRN - try from form, or from CurrentUserTRN in localStorage
         const userTRN = trn || localStorage.getItem('CurrentUserTRN') || '';
         
@@ -827,16 +834,46 @@ if (payment < total - 0.01) {   // allows being 1 cent short due to rounding
             zipCode: zipCode
         };
 
+        console.log('Generating invoice with data:', checkoutData);
+        
+        // Read cart BEFORE generating invoice to ensure we have the data
+        const cartBeforeClear = JSON.parse(localStorage.getItem('spaCart')) || {};
+        console.log('Cart before invoice generation:', cartBeforeClear);
+        
+        if (Object.keys(cartBeforeClear).length === 0) {
+            alert('Your cart is empty! Cannot generate invoice.');
+            return;
+        }
+        
         const invoice = generateInvoice(checkoutData);
         
         if (invoice) {
-            document.getElementById('orderSuccess').style.display = 'block'; // Show success message only when order is successful
-            clearCart(); // Clear cart after successful checkout
-            // Redirect to invoice page after 2 seconds
-            setTimeout(() => window.location.href = 'invoice.html', 2000);
+            console.log('Invoice generated successfully:', invoice);
+            const successMsg = document.getElementById('orderSuccess');
+            if (successMsg) {
+                successMsg.style.display = 'block'; // Show success message only when order is successful
+            }
+            
+            // Clear cart after successful invoice generation
+            clearCart();
+            
+            // Redirect to invoice page after a short delay to show success message
+            setTimeout(() => {
+                console.log('Redirecting to invoice page');
+                window.location.href = 'invoice.html';
+            }, 1500);
         } else {
-            alert('Error generating invoice. Please try again.');
+            console.error('Failed to generate invoice - cart may be empty');
+            alert('Error generating invoice. Your cart may be empty. Please try again.');
         }
+    } else {
+        console.log('Validation failed');
+        // Scroll to first error
+        const firstError = document.querySelector('.error-message:not(:empty)');
+        if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        alert('Please fix the errors in the form before submitting.');
     }
 }
 
