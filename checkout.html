@@ -1,76 +1,140 @@
+Question 4
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"/>
+   
+    <link rel="stylesheet" href="style.css"/> <!--Connects the sheet to CSS-->
+
     <link rel="icon" type="image/x-icon" href="assets/Lily Logo.png">
-    <title>Checkout – Lily of the Valley Spa</title>
+
+    <title>Lily of the Valley Spa</title>
 </head>
 <body>
-    <header>
+    <header> 
         <nav>
-            <a href="index.html"><div class="logo">
-                <img src="assets/Lily of the Valley Spa Logo.png" alt="Logo" class="logo-image">
+            
+           <a href="index.html"> <div class="logo">
+                <img src="assets/Lily of the Valley Spa Logo.png" alt="Entire Logo" class="logo-image">
             </div></a>
-            <ul class="header-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="registration.html">Registration</a></li>
-                <li><a href="Products.html">Products</a></li>
-                <li><a href="Cart.html">Cart <span id="cartCounter" class="cart-count">0</span></a></li>
-                <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="invoice.html">Invoice</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-            </ul>
+           
+                <ul class="header-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="index.html">Login</a></li>
+                    <li><a href="registration.html">Registration</a></li>
+                    <li><a href="Products.html">Products</a></li>
+                    <li><a href="Cart.html">Cart<span id="cartCounter" class="cart-count">0</span></a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="invoice.html">Invoice</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                </ul>
         </nav>
     </header>
-
     <main class="main-content">
+
         <h1 class="section-title">Checkout</h1>
+
         <div class="checkout-container">
+           
             <div class="order-summary-section">
-                <h3>Order Summary</h3>
-                <div class="checkout-items"></div>
-                <div class="cart-summary">
-                    <div class="order-row"><span>Subtotal:</span><span id="checkoutSubtotal">$0.00</span></div>
-                    <div class="order-row"><span>Discount (10%):</span><span id="checkoutDiscount">$0.00</span></div>
-                    <div class="order-row"><span>Tax (15%):</span><span id="checkoutTax">$0.00</span></div>
-                    <div class="order-row total-row"><span>Total:</span><span id="checkoutTotal">$0.00</span></div>
+                    <h3>Order Summary</h3>
+                    <div class="checkout-items">
+                        <!-- Checkout items will be inserted here -->
+                    </div>
+                   
+                    <div class="cart-summary">
+                        <div class="order-row">
+                            <span>Subtotal:</span>
+                            <span id="checkoutSubtotal">$0.00</span>
+                        </div>
+                        <div class="order-row">
+                            <span>Discount (10%):</span>
+                            <span id="checkoutDiscount">$0.00</span>
+                        </div>
+                        <div class="order-row">
+                            <span>Tax (15%):</span>
+                            <span id="checkoutTax">$0.00</span>
+                        </div>
+                        <div class="order-row total-row">
+                            <span>Total:</span>
+                            <span id="checkoutTotal">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shipping-form">
+                    <h3>Fill Out Your Shipping Information</h3>
+                    <form id="checkoutForm">
+
+                        <div class="form-group">
+                            <label for="checkoutfirstName">First Name:</label>
+                            <input type="text" id="checkoutfirstName" name="firstName" required>
+                            <div class="error-message" id="checkoutfirstNameError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="checkoutlastName">Last Name:</label>
+                            <input type="text" id="checkoutlastName" name="lastName" required>
+                            <div class="error-message" id="checkoutlastNameError"></div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="checkoutEmail">Email:</label>
+                            <input type="email" id="checkoutEmail" name="email" required>
+                            <div class="error-message" id="checkoutEmailError"></div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="checkoutTRN">TRN (000-000-000):</label>
+                            <input type="text" id="checkoutTRN" name="trn" placeholder="000-000-000" required>
+                            <div class="error-message" id="checkoutTRNError"></div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="checkoutAddress">Address:</label>
+                            <textarea id="checkoutAddress" name="address" rows="3" required></textarea>
+                            <div class="error-message" id="checkoutAddressError"></div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="checkoutCity">City:</label>
+                            <input type="text" id="checkoutCity" name="city" required>
+                            <div class="error-message" id="checkoutCityError"></div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="checkoutZipCode">Zip Code:</label>
+                            <input type="text" id="checkoutZipCode" name="zipCode" required>
+                            <div class="error-message" id="checkoutZipCodeError"></div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="paymentAmount">Amount Being Paid:</label>
+                            <input type="number" id="paymentAmount" name="paymentAmount" step="0.01" min="0">
+                            <div class="error-message" id="paymentAmountError"></div>
+                        </div>
+                       
+                        <div class="checkout-actions">
+                            <a href="Cart.html"><button type="button" class="btn btn-secondary">Cancel</button></a>
+                            <button type="button" class="btn" onclick="clearCart(); window.location.href='index.html'">Close</button>
+                            <button type="submit" class="btn btn-primary">Confirm Order</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-
-            <div class="shipping-form">
-                <h3>Shipping Information</h3>
-                <form id="checkoutForm">
-                    <!-- All fields match IDs used in JS -->
-                    <div class="form-group"><label for="checkoutfirstName">First Name:</label><input type="text" id="checkoutfirstName" required><div class="error-message" id="checkoutfirstNameError"></div></div>
-                    <div class="form-group"><label for="checkoutlastName">Last Name:</label><input type="text" id="checkoutlastName" required><div class="error-message" id="checkoutlastNameError"></div></div>
-                    <div class="form-group"><label for="checkoutEmail">Email:</label><input type="email" id="checkoutEmail" required><div class="error-message" id="checkoutEmailError"></div></div>
-                    <div class="form-group"><label for="checkoutAddress">Address:</label><textarea id="checkoutAddress" rows="3" required></textarea><div class="error-message" id="checkoutAddressError"></div></div>
-                    <div class="form-group"><label for="checkoutCity">City:</label><input type="text" id="checkoutCity" required><div class="error-message" id="checkoutCityError"></div></div>
-                    <div class="form-group"><label for="checkoutZipCode">Zip Code:</label><input type="text" id="checkoutZipCode" required><div class="error-message" id="checkoutZipCodeError"></div></div>
-                    <div class="form-group"><label for="paymentAmount">Amount Being Paid:</label><input type="number" id="paymentAmount" readonly><div class="error-message" id="paymentAmountError"></div></div>
-
-                    <div class="checkout-actions">
-                        <a href="Cart.html"><button type="button" class="btn btn-secondary">Cancel</button></a>
-                        <button type="button" class="btn" onclick="clearCart();window.location.href='index.html'">Close</button>
-                        <button type="submit" class="btn btn-primary">Confirm Order</button>
-                    </div>
-                </form>
+            <div id="orderSuccess" class="success-message">
+                Your Order placed successfully! Thank you for making Lily of the Valley your choice. You will receive a confirmation email shortly.
             </div>
-        </div>
-
-        <div id="orderSuccess" class="success-message" style="display:none;">
-            Your Order placed successfully! Thank you for making Lily of the Valley your choice. You will receive a confirmation email shortly.
-        </div>
     </main>
-
+    <script src="script.js"></script> <!--Connects to Javascript-->
+   
+    </body>
+   
     <footer>
-        <p>&copy; 2025 Lily of the Valley Spa from Levy's Corp</p>
-        <strong><a href="#Top">Back to the Top</a></strong>
+   
+    <p>&copy; 2025 Lily of the Valley Spa from Levy's Corp </p>
+       <strong> <a href="#Top"> Back to the Top &nbsp; </a> </strong>
+   
     </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
